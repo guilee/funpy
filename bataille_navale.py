@@ -23,18 +23,18 @@ class GameBoard(object):
 
     def initialize(self):
         """Initialise la grille de jeu."""
-        self._board =  [[False for _ in range(self._size)]
-                        for _ in range(self._size)]
+        self._board = [[False for _ in range(self._size)]
+                       for _ in range(self._size)]
 
     def _cell_rendering(self, cell_size, cell_value, h_border_char='-',
-            v_border_char='|', cell_content_char={True: [['X']], False: [[' ']]}):
+                        v_border_char='|',
+                        cell_content_char={True: [['X']], False: [[' ']]}):
         """Calcule le rendu d'une cellule.
-        
         Cela comporte le cadre et le contenu (le cas échéant) de la cellule.
         """
         cell_render = []
         total_cell_size = cell_size + 1
-        h_cell_border_tmpl = ('{:'+ h_border_char + '^' +
+        h_cell_border_tmpl = ('{:' + h_border_char + '^' +
                               '{}'.format(total_cell_size) + '}')
         h_cell_border = h_cell_border_tmpl.format('')
 
@@ -61,7 +61,7 @@ class GameBoard(object):
             row_render = []
             for cell_value in row:
                 row_render.extend(self._cell_rendering(cell_size, cell_value))
-            board_render.append(row_render) 
+            board_render.append(row_render)
 
         logging.debug('Board render: %s', board_render)
 
@@ -85,6 +85,7 @@ class GameBoard(object):
             printable_line.append(printable_line[0][0])
             print(''.join(printable_line))
         print(''.join(top_line))
+
 
 def cli():
     """Command Line Interface.
