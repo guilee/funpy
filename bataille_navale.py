@@ -86,6 +86,19 @@ class GameBoard(object):
             print(''.join(printable_line))
         print(''.join(top_line))
 
+    def set_cell_value(col, row, value):
+        """Définit la valeur d'une case dans le plateau de jeu.
+        Il y a 2 éléments à définir:
+            - la présence d'un morceau de navire
+            - la case à reçu un tir
+
+        Une exception ValueError est levée si la valeur est False.
+        """
+        if value is False:
+            raise ValueError("False n'est pas une valeur autorisée.")
+
+        self._board[col][row] = value
+
 
 def cli():
     """Command Line Interface.
